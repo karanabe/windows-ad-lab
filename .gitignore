@@ -1,0 +1,7 @@
+/config/LabSecrets.psd1
+/logs/*
+!/logs/.gitkeep
+/artifacts/
+/plans/
+/scenarios/rusthound-dev/
+/BUILD_*

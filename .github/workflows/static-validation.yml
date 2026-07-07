@@ -1,0 +1,39 @@
+name: static-validation
+
+on:
+  workflow_dispatch:
+
+jobs:
+  windows-powershell:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate lab config and scripts
+        shell: powershell
+        run: |
+          ./scripts/Test-LabConfig.ps1
+          ./tests/Invoke-StaticValidation.ps1
+          Copy-Item ./config/LabSecrets.example.psd1 ./config/LabSecrets.psd1
+          try {
+            ./tests/Invoke-StaticValidation.ps1
+          }
+          finally {
+            Remove-Item ./config/LabSecrets.psd1
+          }
+
+  powershell-7:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate lab config and scripts
+        shell: pwsh
+        run: |
+          ./scripts/Test-LabConfig.ps1
+          ./tests/Invoke-StaticValidation.ps1
+          Copy-Item ./config/LabSecrets.example.psd1 ./config/LabSecrets.psd1
+          try {
+            ./tests/Invoke-StaticValidation.ps1
+          }
+          finally {
+            Remove-Item ./config/LabSecrets.psd1
+          }
