@@ -7,7 +7,7 @@ jobs:
   windows-powershell:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Validate lab config and scripts
         shell: powershell
         run: |
@@ -24,7 +24,7 @@ jobs:
   powershell-7:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Validate lab config and scripts
         shell: pwsh
         run: |
